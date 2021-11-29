@@ -1,0 +1,95 @@
+<odoo>
+    <record model="ir.actions.act_window" id="alumno_list_action">
+        <field name="name">Alumno</field>
+        <field name="res_model">colegio.alumno</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="clase_list_action">
+        <field name="name">Clase</field>
+        <field name="res_model">colegio.clase</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <menuitem id="colegio_menu_root" name="Colegio"/>
+
+    <menuitem name="Alumnos" id="colegio_menu_alumno" parent="colegio_menu_root"/>
+    <menuitem name="Clases" id="colegio_menu_clase" parent="colegio_menu_root"/>
+
+
+    <menuitem name="listado de alumnos" id="colegio_list_alumno" parent="colegio_menu_alumno" action="alumno_list_action"/>
+    <menuitem name="listado de clases" id="colegio_list_clase" parent="colegio_menu_clase" action="clase_list_action"/>
+
+
+    <record model="ir.ui.view" id="alumno_form_view">
+        <field name="name">alumno.form</field>
+        <field name="model">colegio.alumno</field>
+        <field name="arch" type="xml">
+            <form string="Formulario de alumnos">
+                <sheet>
+                    <group>
+                        <field name="name" />
+                        <field name="edad"/>
+                        <field name="altura"/>
+                        <field name="peso"/>
+                        <field name="imc"/>
+                        <field name="clase_id"/>
+                        <field name="genero"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="clase_form_view">
+        <field name="name">clase.form</field>
+        <field name="model">colegio.clase</field>
+        <field name="arch" type="xml">
+            <form string="Formulario de alumnos">
+                <sheet>
+                    <group>
+                        <field name="name" />
+                        <field name="alumno_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="alumno_tree_view">
+        <field name="name">alumno.tree</field>
+        <field name="model">colegio.alumno</field>
+        <field name="arch" type="xml">
+            <tree string="Listado de alumnos">
+                <field name="name"/>
+                <field name="edad"/>
+                <field name="altura"/>
+                <field name="peso"/>
+                <field name="genero"/>
+                <field name="imc"/>
+            </tree>
+        </field>
+    </record>
+
+
+
+    <record model="ir.ui.view" id="alumno_search_view">
+        <field name="name">alumno.search</field>
+        <field name="model">colegio.alumno</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="edad"/>
+                <field name="altura"/>
+                <group string="Agrupar por">
+                    <filter name="group_by_genero" string="Genero" context="{'group_by': 'genero'}"/>
+                </group>
+                <group string="Agrupar por">
+                    <filter name="group_by_edad" string="Edad" context="{'group_by': 'edad'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+</odoo>
