@@ -21,3 +21,17 @@ class Clase(models.Model):
     name = fields.Char(string="Nombre de la clase")
     alumno_id = fields.One2many("colegio.alumno", "clase_id", string="Alumno")
 
+class AlumnoEdad(models.Model):
+    _inherit = "colegio.alumno"
+    _name = "colegio.alumnoedad"
+
+    cuenta = fields.Integer(string="Resultado")
+
+    @api.onchange('peso', 'edad')
+    def _onchange_price(self):
+        self.cuenta = (self.peso + self.edad)/2
+
+    
+    @api.onchange('peso', 'altura')
+    def _onchange_price(self):
+        self.imc = self.peso * self.altura

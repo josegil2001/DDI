@@ -10,16 +10,22 @@
         <field name="res_model">colegio.clase</field>
         <field name="view_mode">tree,form</field>
     </record>
+    <record model="ir.actions.act_window" id="alumnoedad_list_action">
+        <field name="name">AlumnoEdad</field>
+        <field name="res_model">colegio.alumnoedad</field>
+        <field name="view_mode">tree,form</field>
+    </record>
 
-
-    <menuitem id="colegio_menu_root" name="Colegio"/>
+    <menuitem id="colegio_menu_root" name="ColegioRubrica"/>
 
     <menuitem name="Alumnos" id="colegio_menu_alumno" parent="colegio_menu_root"/>
     <menuitem name="Clases" id="colegio_menu_clase" parent="colegio_menu_root"/>
+    <menuitem name="AlumnosEdades" id="colegio_menu_alumnoedad" parent="colegio_menu_root"/>
 
 
     <menuitem name="listado de alumnos" id="colegio_list_alumno" parent="colegio_menu_alumno" action="alumno_list_action"/>
     <menuitem name="listado de clases" id="colegio_list_clase" parent="colegio_menu_clase" action="clase_list_action"/>
+    <menuitem name="listado de alumnosedades" id="colegio_list_alumnoedad" parent="colegio_menu_alumnoedad" action="alumnoedad_list_action"/>
 
 
     <record model="ir.ui.view" id="alumno_form_view">
@@ -57,6 +63,28 @@
         </field>
     </record>
 
+        <record model="ir.ui.view" id="alumnoedad_form_view">
+        <field name="name">alumnoedad.form</field>
+        <field name="model">colegio.alumnoedad</field>
+        <field name="arch" type="xml">
+            <form string="Formulario de alumnosedades">
+                <sheet>
+                    <group>
+                        <field name="name" />
+                        <field name="edad"/>
+                        <field name="altura"/>
+                        <field name="peso"/>
+                        <field name="imc"/>
+                        <field name="clase_id"/>
+                        <field name="genero"/>
+                        <field name="cuenta"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
     <record model="ir.ui.view" id="alumno_tree_view">
         <field name="name">alumno.tree</field>
         <field name="model">colegio.alumno</field>
@@ -68,6 +96,22 @@
                 <field name="peso"/>
                 <field name="genero"/>
                 <field name="imc"/>
+            </tree>
+        </field>
+    </record>
+
+        <record model="ir.ui.view" id="alumnoedad_tree_view">
+        <field name="name">alumnoedad.tree</field>
+        <field name="model">colegio.alumnoedad</field>
+        <field name="arch" type="xml">
+            <tree string="Listado de alumnosedades">
+                <field name="name"/>
+                <field name="edad"/>
+                <field name="altura"/>
+                <field name="peso"/>
+                <field name="genero"/>
+                <field name="imc"/>
+                <field name="cuenta"/>
             </tree>
         </field>
     </record>
